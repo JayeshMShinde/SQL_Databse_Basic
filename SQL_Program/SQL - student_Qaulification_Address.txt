@@ -1,0 +1,43 @@
+/---------------------------------*Student Table*------------------------------------------------------------\
+Create table Stud_table
+(
+Sid number primary key,
+Sname varchar(100) not null,
+Scontact number unique,
+Semail varchar(100) not null
+)
+/---------------------------------------------------------------------------------------------\
+insert into stud_table values(3,'Mahesh',0445566789,'Mahesh546@gmail.com')
+select * from Stud_table
+/----------------------------------*Qaulifiaction Table*-----------------------------------------------------------\
+Create table Qauli_tbl1
+(
+q_id number primary key,
+Qaul_nm varchar(100) not null,
+Degree_nm varchar(100),
+cgpa number unique,
+Sid number constraint fksid012 references stud_table(sid)
+)
+/---------------------------------------------------------------------------------------------\
+insert into Qauli_tbl1 values(3,'HSC','-',7,1)
+select * from Qauli_tbl1 
+/--------------------------------------------*Address Table*-------------------------------------------------\
+Create table Address
+(
+A_id number primary key,
+state varchar(100) not null,
+city varchar(100),
+Landmark varchar(100),
+pincode number unique,
+Sid number constraint fksid022 references stud_table(sid)
+)
+/---------------------------------------------------------------------------------------------\
+insert into Address values(3,'Maharastra','nashik','Satpur',400123,3)
+select * from Address
+/------------------------------------------*All Student-qaulification-address*---------------------------------------------------\
+Select st.sid,sname,scontact,semail,qaul_nm,degree_nm,cgpa,state,city,landmark,pincode from stud_table st join qauli_tbl1 qt on st.sid=qt.sid join address ad on qt.sid = ad.sid
+/-------------------------------------------*Student-qaulification*--------------------------------------------------\
+Select st.sid,sname,scontact,semail,qaul_nm,degree_nm,cgpa from stud_table st join qauli_tbl1 qt on st.sid=qt.sid
+/--------------------------------------*Student-address*-------------------------------------------------------\
+Select st.sid,sname,scontact,semail,state,city,landmark,pincode from stud_table st join address ad on st.sid=ad.sid
+/---------------------------------------------------------------------------------------------\

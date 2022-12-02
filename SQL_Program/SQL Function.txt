@@ -1,0 +1,33 @@
+/-------------------------------------------------------Function-----------------------------------------------\
+*CASE MANUPULATION*
+Select upper('Welcome to pune') from dual
+Select lower('Welcome to pune') from dual
+Select initcap('Welcome to pune') from dual
+/-------------------------------------------------------------------------------------------------------\
+*CHARATER MANUPULATION*
+Select length('Welcome to pune') from dual
+Select reverse('Welcome to pune') from dual
+Select replace('pue and pack','p','bl') from dual
+Select concat('hi','hello') from dual
+Select 'welcome' || 'to' || 'pune' from dual
+
+
+
+
+/-------------------------------------------------------------------------------------------------------\
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

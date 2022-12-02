@@ -1,0 +1,27 @@
+select employee_id,first_name,last_name,salary,salary+5000 from hr.employees
+
+select employee_id,first_name,last_name,salary,salary+5000 as "Updated Salary" from hr.employees
+
+select employee_id,first_name,last_name,salary,salary+(salary*0.1) as "Updated Salary" from hr.employees
+
+select employee_id,first_name,last_name,salary,salary+(salary*0.15) as "Updated Salary by 15%" from hr.employees
+
+select employee_id,first_name,last_name,salary,salary*12 as "Annual Salary" from hr.employees
+
+select employee_id,first_name,last_name,salary,salary*12 as "Annual Salary",((salary*12)*(0.1))+(salary*12) as "Annual Salary increase by 10%" from hr.employees
+
+Select employee_id,first_name,last_name,salary from hr.employees where salary<10000
+
+Select employee_id,first_name,last_name,salary from hr.employees where employee_id<11
+
+select employee_id,first_name,last_name,salary,salary+(salary*0.1) as "Updated Salary" from hr.employees where salary<7000
+
+select employee_id,first_name,last_name,salary from hr.employees where salary>10000 and employee_id<115
+
+select employee_id,first_name,last_name,salary from hr.employees where salary>10000 or employee_id<115
+
+Select * from hr.employees
+
+select employee_id,first_name,last_name,hire_date,job_id from hr.employees where manager_id=108 and department_id=100
+
+select employee_id,first_name,last_name,hire_date,job_id from hr.employees where manager_id=108 or department_id=100

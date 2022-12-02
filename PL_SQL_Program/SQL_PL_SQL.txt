@@ -1,0 +1,334 @@
+/======================================================================================================================\
+Create or replace view view_sample as select Employee_id,first_name,last_name,department_name from HR.employees e join HR.departments d on e.department_id = d.department_id;
+select * From view_sample;
+/======================================================================================================================\
+Create or replace view  view_demo as select deparment_name,count(employee_id) as "Total Employees" from hr.employees e join HR.departments d on e.department_id = d.department_id group by department_name;
+Select * from View_demo;
+--------------------------------------------Table Object -----------------------------------------------------------------------
+--INDEX--
+--TABLE CREATION
+create table emps_1 
+(
+emmp_id number,
+emp_nm varchar(100),
+salary number
+)
+--ISERTING DATA 
+insert into emps_1 values(1,'ajay',12000);
+insert into emps_1 values(2,'jay',13000);
+insert into emps_1 values(3,'raj',15000);
+insert into emps_1 values(4,'rajesh',20000);
+insert into emps_1 values(5,'mahesh',10000);
+insert into emps_1 values(6,'shiv',12000);
+insert into emps_1 values(7,'ganesh',13000);
+insert into emps_1 values(8,'dharmesh',18000);
+insert into emps_1 values(9,'rushi',19000);
+insert into emps_1 values(10,'laxman',25000);
+
+select * from emps_1;
+--INDEX CREATION --
+create index ind_emps on emps(emp_id);
+select * from emps_1;
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-----*SEQUENCE*----
+--CREATING SEQUENCE--
+Create sequence seq_new start with 1 increment by 1 maxvalue 100
+--NEXTVAL
+select seq_new.nextval from dual
+--CURRVAL
+select seq_new.currval from dual
+------------------------------------------------------------------------
+--HOW TO USE SEQUENCE IN TABLE--
+insert into emps_1 values(seq_new.nextval,'lax',20000);
+insert into emps_1 values(seq_new.nextval,'jayesh',22000);
+-------------------------------------------------------------------------------------------------------------------------------------
+-----*SYNONYM*----
+create synonym  e for hr.employees
+select * from e
+drop synonym e
+-------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------*PL/SQL*--------------------------------------------------------------------
+--TO DISPLAY OUTPUT
+set serveroutput on
+----PL/SQL Program----
+--begin
+  --body of program
+--end;
+begin
+  dbms_output.put_line('Welcome to pl/sql');
+end;
+
+--ADDITION OF TWO NUMBER
+declare
+a number:=10;
+b number:=20;
+c number;
+begin
+c:=a+b;
+dbms_output.put_line('ADDITION IS  : '||c);
+end;
+
+--CALCULATE TOTAL MARKS,PERCENTAGE
+declare
+s1 number:=50;
+s2 number:=70;
+s3 number:=60;
+tot number;
+per number;
+begin
+tot := s1+s2+s3;
+dbms_output.put_line('TOTAL IS :'|| tot);
+per := tot/3;
+dbms_output.put_line('PERCENTAGE IS :'|| per);
+end;
+----------------------------------------------------------------------------------------------------------
+--ADDITION OF TWO SALARY FROM TABLE
+declare
+eid1 number:=110;
+eid2 number:=125;
+sal1 number;
+sal2 number;
+tt1 number;
+begin
+select salary into sal1 from hr.employees where employee_id  = eid1;
+select salary into sal2 from hr.employees where employee_id  = eid2;
+tt1:= sal1+sal2;
+dbms_output.put_line('TOTAL SALARY IS :'|| tt1);
+end;
+----------------------------------------------------------------------
+--ADDITION OF THREE EMPLOYEEES SALARY
+declare
+eid1 number:=110;
+eid2 number:=125;
+eid3 number:=109;
+sal1 number;
+sal2 number;
+sal3 number;
+tt1 number;
+begin
+select salary into sal1 from hr.employees where employee_id  = eid1;
+select salary into sal2 from hr.employees where employee_id  = eid2;
+select salary into sal3 from hr.employees where employee_id  = eid3;
+tt1:= sal1+sal2+sal3;
+dbms_output.put_line('ADDITION OF THREE EMPLOYEES SALARY IS :'|| tt1);
+end;
+-------------------------------------------------------------------------
+-------------------IF_ELSE-----------------
+declare
+a number:=10;
+b number:=12;
+begin
+if(a>b) then
+begin
+dbms_output.put_line('A is Greater');
+end;
+else
+begin
+dbms_output.put_line('B is Greater');
+end;
+end if;
+end;
+------------USER INPUT------------------
+declare
+a number:=&a;
+b number:=&b;
+begin
+if(a>b) then
+begin
+dbms_output.put_line('A is Greater');
+end;
+else
+begin
+dbms_output.put_line('B is Greater');
+end;
+end if;
+end;
+-----------------------------------------
+declare
+s1 number:=&s1;
+s2 number:=&s2;
+s3 number:=&s3;
+tot number;
+per number;
+begin
+tot:=s1+s2+s3;
+dbms_output.put_line('Total is :'||tot);
+per:= tot/3;
+dbms_output.put_line('percentage is :'|| per);
+if(per>35) then
+begin
+dbms_output.put_line('PASS');
+end;
+else
+begin
+dbms_output.put_line('FAIL');
+end;
+end if;
+end;
+-------------------------------------------------------------------------------
+set serveroutput on
+declare
+eid1 number:=&eid1;
+eid2 number:=&eid2;
+sal1 number;
+sal2 number;
+begin
+select salary into sal1 from hr.employees where employee_id  = eid1;
+select salary into sal2 from hr.employees where employee_id  = eid2;
+if(sal1>sal2) then
+begin
+dbms_output.put_line('SALARY ' || sal1 || ' of employee id ' || eid1 || ' IS GREATER');
+end;
+else
+begin
+dbms_output.put_line('SALARY ' || sal2 || ' of employee id ' || eid2 || ' IS GREATER');
+end;
+end if;
+end;
+-------------------------------------------------------------------------------
+declare
+a number := &a;
+begin
+if(a mod 2=0) then
+begin
+dbms_output.put_line('EVEN');
+end;
+else
+begin
+dbms_output.put_line('ODD');
+end;
+end if;
+end;
+-------------------------------------------------------------------------------
+--
+declare
+eid1 number:=&eid1;
+eid2 number:=&eid2;
+sal1 number;
+sal2 number;
+begin
+select salary into sal1 from hr.employees where employee_id  = eid1;
+select salary into sal2 from hr.employees where employee_id  = eid2;
+if(eid1 mod 2 =0) then
+begin
+dbms_output.put_line(' Employee id ' || eid1 || ' Salary ' || sal1);
+end;
+end if;
+if(eid2 mod 2 =0) then
+begin
+dbms_output.put_line(' Employee id ' || eid2 || ' Salary ' || sal2);
+end;
+end if;
+end;
+--------------------------------------------------------------------------------
+declare
+Char_check char:='&Char_check';
+begin
+if(Char_check='a' or Char_check='e' or Char_check='i' or Char_check='o' or Char_check='u') then
+begin
+dbms_output.put_line('Charater is Vowel');
+end;
+else
+begin
+dbms_output.put_line('Charater is not vowel');
+end;
+end if;
+end;
+--------------------------------------------------------------------------------
+declare
+a number := 10;
+b number := 20;
+c number := 30;
+begin
+if(a>b and a>c) then
+begin
+dbms_output.put_line('A is greater');
+end;
+else
+begin
+  if(b>a and b>c) then
+  begin
+  dbms_output.put_line('B is greater');
+  end;
+  else
+  begin 
+  dbms_output.put_line('C is greater');
+  end;
+  end if;
+end;
+end if;
+end;
+--------------------------------------------------------------------------------
+declare
+eid1 number :=&eid1;
+eid2 number :=&eid2;
+eid3 number :=&eid3;
+sal1 number;
+sal2 number;
+sal3 number;
+begin
+select salary into sal1 from hr.employees where employee_id  = eid1;
+select salary into sal2 from hr.employees where employee_id  = eid2;
+select salary into sal3 from hr.employees where employee_id  = eid3;
+if(eid1 > eid2 and eid1 > eid3) then
+begin
+dbms_output.put_line('EID 1 has greater salary');
+end;
+else
+begin
+  if(eid2>eid1 and eid2>eid3) then
+  begin
+  dbms_output.put_line('EID 2 has greater salary');
+  end;
+  else
+  begin
+  dbms_output.put_line('EID 3 has greater salary');
+  end;
+  end if;
+end;
+end if;
+end;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

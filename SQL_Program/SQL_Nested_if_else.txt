@@ -1,0 +1,52 @@
+set serveroutput on
+/---------------------------------------------------------------------------------\
+declare
+s1 number:=&s1;
+s2 number:=&s2;
+s3 number:=&s3;
+tot number;
+per number;
+begin
+tot:=s1+s2+s3;
+dbms_output.put_line('Total is :'||tot);
+per:= tot/3;
+dbms_output.put_line('percentage is :'|| per);
+if(per>81 and per<100)  then
+begin
+dbms_output.put_line('First class');
+end;
+else
+begin
+  if(per>61 and per<80) then
+  begin
+  dbms_output.put_line('Second class');
+  end;
+  else
+  begin
+    if(per>41 and per<60) then
+    begin
+    dbms_output.put_line('pass');
+    end;
+    else
+    begin
+    dbms_output.put_line('Fail');
+    end;
+    end if;
+  end;
+  end if;
+end;
+end if;
+end;
+---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+

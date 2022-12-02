@@ -1,0 +1,138 @@
+---------------------------------------------------------------------------------------------------------
+--LOOP--
+declare 
+i number := 1;
+begin
+loop
+dbms_output.put_line(i);
+i:=i+1;
+exit when  i >10;
+end loop;
+end;
+--------------------------------------------------------------------------------
+declare 
+i number:=10;
+begin
+loop
+dbms_output.put_line(i);
+i:=i-1;
+exit when  i=0;
+end loop;
+end;
+--------------------------------------------------------------------------------
+declare 
+eid number := 110;
+fn char(100);
+ln char(100);
+sal number;
+begin
+loop
+select employee_id,first_name,last_name,salary into eid,fn,ln,sal from hr.employees where employee_id = eid;
+dbms_output.put_line(eid || ' ' || fn || ' ' || ln ||' '|| sal);
+eid:= eid +1;
+exit when eid >130;
+end loop;
+end;
+--WHILE LOOP--
+declare
+i number :=1;
+begin
+while(i<=10)
+loop
+dbms_output.put_line(i);
+i:=i+1;
+end loop;
+end;
+--------------------------------------------------------------------------------
+set serveroutput on
+declare
+i number :=10;
+begin
+while(i>0)
+loop
+dbms_output.put_line(i);
+i:=i-1;
+end loop;
+end;
+--------------------------------------------------------------------------------
+--For loop--
+declare
+i number;
+begin
+for i in 1..10
+loop
+dbms_output.put_line(i);
+end loop;
+end;
+--------------------------------------------------------------------------------
+declare
+i number;
+begin
+for i in reverse 1..10
+loop
+dbms_output.put_line(i);
+end loop;
+end;
+--------------------------------------------------------------------------------
+declare
+i number :=1;
+temp number:=0;
+begin
+while(i<=10)
+loop
+temp := temp + i;
+dbms_output.put_line(temp);
+i:=i+1;
+end loop;
+end;
+-----------------------------------------------------------------------------------
+declare 
+eid number := 100;
+fn varchar(50);
+ln varchar(50);
+sal number;
+begin
+loop
+select employee_id,first_name,last_name,salary into eid,fn,ln,sal from hr.employees where employee_id = eid;
+  if(length(sal)=5) then
+  begin
+  dbms_output.put_line(eid||' '||fn||' '||ln||' '||sal);
+  end;
+  end if;
+eid:= eid +1;
+exit when eid >206;
+end loop;
+end;
+--------------------------------------------------------------------------------------------------------
+declare
+a number :=&a;
+i number :=2;
+flag number :=0;
+begin
+if(a=1 or a=0) then
+begin
+flag:=1;
+end;
+end if;
+for i in 2..a/2
+loop
+    if(mod(a,i)=0)then
+    begin
+    flag :=1;
+    end;
+    end if;
+end loop;
+if(flag =0)then
+begin
+dbms_output.put_line('It is prime no.');
+end;
+else
+begin
+dbms_output.put_line('Not a prime no.');
+end;
+end if;
+end;
+
+
+
+

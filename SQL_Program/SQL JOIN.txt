@@ -1,0 +1,16 @@
+/==================================*JOIN*===========================================\
+Select * from hr.employees
+Select * from hr.departments
+Select * from hr.locations
+Select employee_id,first_name,last_name,salary,d.department_id,department_name from hr.employees e join hr.departments d on e.department_id=d.department_id
+select department_id,department_name,city from hr.departments d join hr.locations l on d.location_id = l.location_id
+select department_name,count(employee_id) from hr.employees e join hr.departments d on e.department_id = d.department_id group by department_name
+/===============================================================================================================================\
+Select first_name,department_name from hr.employees e join hr.departments d on e.department_id=d.department_id where d.department_id = 110
+select to_char(hire_date,'yyyy') as "Year",to_char(hire_date,'month') as "Month",Department_name,salary from hr.employees e join hr.departments d on e.department_id = d.department_id where salary>10000
+
+select department_name,count(employee_id) from hr.employees e join hr.departments d on e.department_id = d.department_id group by department_name having count(employee_id)=(select max(count(employee_id)) from hr.employees e join hr.departments d on e.department_id = d.department_id group by department_name)
+
+/===============================================================================================================================\
+*Three Join*
+Select employee_id,first_name,department_name,city from hr.employees e join hr.departments d on e.department_id = d.department_id join hr.locations l on d.location_id=l.location_id where city like 'S%' 

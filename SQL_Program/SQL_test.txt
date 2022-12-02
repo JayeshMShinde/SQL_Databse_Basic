@@ -1,0 +1,107 @@
+/-----------------------------------------------------------------------------------\
+1.
+Select * from hr.employees
+2.
+select first_name from hr.employees
+3.
+Select first_name,job_id from hr.employees
+select first_name,job_title from hr.employees e join hr.jobs j on e.job_id=j.job_id
+4.
+select * from hr.departments
+select  department_name from hr.departments
+5.
+Select first_name,job_id from hr.employees where job_id like '%___MGR%'
+6.
+select first_name,salary from hr.employees where salary>3000
+7.
+select first_name from hr.employees where first_name like '%_a___%'
+8.
+select * from sys.dba_tab_privs where grantee='PUBLIC'
+9.
+select * from hr.departments
+10.
+select employee_id,first_name as "Employee_name",salary from hr.employees
+11.
+select employee_id,first_name,hire_date,job_title from hr.employees e join hr.jobs j on e.job_id=j.job_id where department_id = 10
+12.
+Select * from hr.employees where salary>2000
+13.
+Select employee_id,first_name,last_name from hr.employees where department_id between 10 and 20 
+Select employee_id,first_name,last_name from hr.employees where first_name like '%A_____d%'
+14.
+select Employee_id,first_name,last_name,hire_date from hr.employees where hire_date='21-dec-90'
+15.
+select employee_id,first_name,salary,(salary*12) as "Annual Salary" from hr.employees where department_id = 10
+16.
+select employee_id,first_name,last_name,salary,row_number()over(order by salary desc) from hr.employees where (salary*12)>25000
+17.
+Select employee_id,first_name,last_name from hr.employees where first_name like '%__f__%'
+18.
+select * from hr.locations
+select department_name,street_address,city from hr.departments d join hr.locations l on d.location_id=l.location_id
+19.
+select department_id,department_name from hr.departments order by department_id desc
+20.
+select employee_id,first_name,job_id,salary from hr.employees where salary between 1000 and 3000
+21.
+select ((salary*12)*0.011) As "Bonus",to_char(hire_date,'yyyy') as "Year" from hr.employees 
+22.
+select Employee_id,first_name,job_id,department_id from hr.employees where department_id = 30 or department_id = 40
+23.
+select job_id from hr.employees where job_id like '%__MGR%'
+24.
+select First_name,job_id,salary from hr.employees where job_id like '%__MGR%' or job_id like '%__CLERK%' and Salary>1500
+25.
+select first_name,(Salary*12) as "Annual Salary",(salary *COMMISSION_PCT) as "Commission Earned" from hr.employees where salary>(salary *COMMISSION_PCT)
+26.
+select * from hr.jobs
+select First_name,Department_name from hr.employees e join hr.departments d on e.Department_id=d.Department_id where Department_name like '%s'
+27.
+select first_name,Last_name,salary from hr.employees where salary between 1000 and 2200
+28.
+Select First_name,salary from hr.employees where job_id like '%__CLERK%'
+29.
+Select first_name from hr.employees where first_name like 'B%' or first_name like 'M%' 
+30.
+select job_title from hr.jobs
+select * from hr.jobs
+31.
+Select First_name,last_name from hr.employees order by First_name asc
+32.
+select Employee_id,First_name from hr.employees where job_id = 'AD_PRES'
+select Employee_id,First_name from hr.employees e Join hr.jobs j on e.job_id = j.job_id where job_title = 'President'
+33.
+
+34.
+select Employee_id || ' ' || First_name || ' ' || job_id from hr.Employees
+35.
+select Department_id || Department_name || manager_id || Location_id from hr.departments
+36.
+select Employee_id as "Emp#",first_name as "Employee",job_id as "Designation",hire_date as "Start date" from hr. employees
+37.
+select * from hr.employees
+select employee_id,first_name,last_name,email,phone_number,hire_date,job_id,salary,commission_pct,manager_id,department_id from hr.employees
+39.
+select first_name,Job_id,Hire_date from hr.employees where  to_char(hire_date,'Month') between 'February' and 'March' and to_char(hire_date,'yyyy') = 1981 
+40.
+select first_name,to_char(hire_date,'yyyy') from hr.employees where to_char(hire_date,'yyyy') = 1982
+41.
+select first_name,job_title from hr.employees e join  hr.jobs j on e.job_id=j.job_id where manager_id is null
+42.
+select first_name,salary,commission_pct from hr.employees where commission_pct is not null order by salary,commission_pct desc
+43.
+select first_name from hr.employees where first_name like '__a%' 
+44.
+
+45.
+select first_name,Job_id,salary from hr.employees where job_id like '%__CLERK%' and salary not in (1000,3000,5000) 
+46.
+select First_name,Salary,Salary+(salary * commission_pct) as "Commission",(salary+(salary * 0.10)) as "Sal Increased By 10%"  from hr.employees where (Salary+(salary * commission_pct))>(salary+(salary * 0.10))
+47.
+
+48.
+
+49.
+select to_char(sysdate,'dd'),to_char(sysdate,'Month'),to_char(sysdate,'Year') from dual
+50.
+select first_name,to_char(hire_date,'yyyy') as "Hire Year" from hr.employees where to_char(hire_date,'yyyy') between 1900 and 2000

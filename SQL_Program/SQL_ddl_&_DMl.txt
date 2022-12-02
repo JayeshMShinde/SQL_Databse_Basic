@@ -1,0 +1,75 @@
+/============================================CREATE TABLE================================================\
+create table employee(eid number,ename varchar(100),salary number)
+/============================================INSERT DATA IN TABLE================================================\
+Insert into employee values(1,'Ramesh',20000)
+Insert into employee values(1,'Ramesh',20000)
+Insert into employee values(2,'alka',25000)
+select * from employee
+/---------------------------------------------------------------------------------------------\
+create table emp_data
+(
+emp_id number primary key,
+emp_name varchar(100) not null,
+contact_no number unique,
+salary number,check(salary>1000)
+)
+/---------------------------------------------------------------------------------------------\
+primary Key -> It checks both unique and null value
+Not Null -> it check the data does not contain null values
+unique -> it checks the unique value in the table
+check -> it check the values contions is true or not
+forigen key -> in this the data is referred from parent table which containing the primary key in the table
+/---------------------------------------------------------------------------------------------\
+insert into emp_data values(1,'Ramesh',9987564,20500)
+insert into emp_data values(1,'Raj',9887452,20500)
+insert into emp_data values(2,'Raj',9887452,20500)
+insert into emp_data values(3,'',97555555,50000)
+insert into emp_data values(4,'Ajay',444455555,5000)
+select * from emp_data 
+
+create table state
+(
+sid number,
+sname varchar(100),
+emp_id number constraint fkeid references emp_data(emp_id)
+)
+
+insert into state values(1,'Maharastra',2)
+insert into state values(2,'Gujarat',4)
+insert into state values(3,'Raajasthan',1)
+insert into state values(4,'delhi',3)
+
+select * from State
+/-------------------------------------------------------------------------------\
+select e.emp_id,emp_name,contact_no,salary,sname from emp_data e join state s on e.emp_id=s.emp_id
+/-------------------------------------------------------------------------------\
+create table state_d
+(
+s_id number primary key,
+s_name varchar(100),
+emp_id number constraint fkempid references emp_data(emp_id)
+)
+insert into state_d  values(1,'Maharastra',2)
+insert into state_d values(2,'Gujarat',4)
+insert into state_d values(3,'Raajasthan',1)
+insert into state_d values(4,'delhi',3)
+select * from state_d
+/--------------------------------------------------------------------------------------------------------------------------\
+create table city ( cid number primary key,citynm varchar(100),s_id number constraint fksid references state_d(s_id))  
+insert into city values(1,'pune',2)
+insert into city values(2,'vapi',4)
+insert into city values(3,'jaipur',1)
+select * from city
+/-----------------------------------------------------------------------------------\
+create table location ( lid number primary key,loc_nm varchar(100),cid number constraint fkcid references city(cid)) 
+insert into location values(1,'hadapsar',2)
+insert into location values(2,'chala',3)
+select * from location 
+/-----------------------------------------------------------------------------------------------------------------------\
+create table busstop ( bsid number primary key,bs_nm varchar(100),lid number constraint fklid references location(lid)) 
+insert into busstop values(1,'gadital',1)
+insert into busstop values(2,'dhabel checkpost',2)
+select * from busstop 
+/----------------------------------------------------------------------------------------------\
+select e.emp_id,emp_name,contact_no,salary,s_name,citynm,loc_nm,bs_nm from emp_data e join state_d s on e.emp_id=s.emp_id join city c on s.s_id=c.cid join location l on c.cid=l.lid join busstop bs on l.lid=bs.bsid
+/-------------------------------------------------------------------------------\

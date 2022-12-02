@@ -1,0 +1,31 @@
+/======================================================================================================================\
+Create or replace view view_sample as select Employee_id,first_name,last_name,department_name from HR.employees e join HR.departments d on e.department_id = d.department_id;
+select * From view_sample;
+/======================================================================================================================\
+Create or replace view  view_demo as select deparment_name,count(employee_id) as "Total Employees" from hr.employees e join HR.departments d on e.department_id = d.department_id group by department_name;
+Select * from View_demo;
+--------------------------------------------Table Object -----------------------------------------------------------------------
+--INDEX--
+--TABLE CREATION
+create table emps_1 
+(
+emmp_id number,
+emp_nm varchar(100),
+salary number
+)
+--ISERTING DATA 
+insert into emps_1 values(1,'ajay',12000);
+insert into emps_1 values(2,'jay',13000);
+insert into emps_1 values(3,'raj',15000);
+insert into emps_1 values(4,'rajesh',20000);
+insert into emps_1 values(5,'mahesh',10000);
+insert into emps_1 values(6,'shiv',12000);
+insert into emps_1 values(7,'ganesh',13000);
+insert into emps_1 values(8,'dharmesh',18000);
+insert into emps_1 values(9,'rushi',19000);
+insert into emps_1 values(10,'laxman',25000);
+
+select * from emps_1;
+--INDEX CREATION --
+create index ind_emps on emps(emp_id);
+select * from emps_1;

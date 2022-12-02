@@ -1,0 +1,20 @@
+/===================Creating the student Table=====================================\
+create table Stud_data
+(
+Stud_id number primary key,
+Stud_name varchar(100) not null,
+contact_no number unique
+)
+/===================Creating the State Table=====================================\
+create table St_data
+(
+St_id number primary key,
+St_nm varchar(100) not null,
+Stud_id number constraint fkstid references Stud_data(Stud_id)
+)
+/=====================================Inserting Data===============================\
+Insert into stud_data values(3,'Dharmesh',222244455)
+Insert into St_data values(3,'Rajasthan',3)
+/================================DataDisplay=======================================\
+Select * from Stud_data
+select stud.Stud_id,stud_name,st_nm from Stud_data stud join St_data st on stud.stud_id=st.stud_id

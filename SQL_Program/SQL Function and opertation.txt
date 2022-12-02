@@ -1,0 +1,57 @@
+Select Employee_id,first_name,last_name,salary from hr.employees where employee_id between 110 and 130
+Select Employee_id,first_name,last_name,salary from hr.employees where employee_id not between 110 and 130
+/-------------------------------------------------------------------------------------------------------\
+Select * from hr.employees where employee_id=110
+select employee_id,first_name,last_name,salary from hr.employees where employee_id in (110,125,135,167,201) 
+select employee_id,first_name,last_name,salary from hr.employees where salary in (7000,15000,10000) 
+/-------------------------------------------------------------------------------------------------------\
+select employee_id,first_name,last_name,salary from hr.employees where first_name like 'S%'
+select employee_id,first_name,last_name,salary from hr.employees where first_name like '%s'
+select employee_id,first_name,last_name,salary from hr.employees where first_name like '%s%'
+/-------------------------------------------------------------------------------------------------------\
+select employee_id,first_name,last_name,salary from hr.employees where first_name like '_i__e%'
+select employee_id,first_name,last_name,salary from hr.employees where first_name like '%e_'
+select employee_id,first_name,last_name,salary from hr.employees where first_name like '%_e_%'
+/-------------------------------------------------------------------------------------------------------\
+display last of those emp whoes firstname end with e
+select last_name from hr.employees where first_name like '%e'
+/-------------------------------------------------------------------------------------------------------\
+display all records of those emp whoes first nm start with a and  last name end with b
+select * from hr.employees where first_name like 'A%' and Last_name like '%n'
+/-------------------------------------------------------------------------------------------------------\
+
+
+/-------------------------------------------------------Function-----------------------------------------------\
+*CASE MANUPULATION*
+Select upper('Welcome to pune') from dual
+Select lower('Welcome to pune') from dual
+Select initcap('Welcome to pune') from dual
+/-------------------------------------------------------------------------------------------------------\
+*CHARATER MANUPULATION*
+Select length('Welcome to pune') from dual
+Select reverse('Welcome to pune') from dual
+Select replace('pue and pack','p','bl') from dual
+Select concat('hi','hello') from dual
+Select 'welcome' || 'to' || 'pune' from dual
+Select lpad(12345,8,0) from dual
+Select rpad(12345,8,0) from dual
+Select instr('welcome to pune','e') from dual
+Select substr('welcome to pune',2,8) from dual
+select trim('w' from 'welcome to pune') from dual
+/-------------------------------------------------------------------------------------------------------\
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

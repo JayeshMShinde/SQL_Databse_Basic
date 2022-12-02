@@ -1,0 +1,53 @@
+/-----------------------------Function----------------------------------------------\
+*NUMBER* 
+Select round(243.567,2) from dual
+Select round(243.567,1) from dual
+select trunc(243.567) from dual
+select mod(100,3) from dual
+/---------------------------------------------------------------------------\
+*DATE*
+Select sysdate from dual
+Select sysdate,localtimestamp from dual
+alter session set time_zone='+5:30'
+Select sysdate,localtimestamp,current_timestamp from dual
+/---------------------------------------------------------------------------\
+*Date Conversion*
+Select to_char(sysdate,'yyyy') from dual
+Select to_char(sysdate,'year') from dual
+Select to_char(sysdate,'yy') from dual
+Select to_char(sysdate,'d') from dual
+Select to_char(sysdate,'day') from dual
+Select to_char(sysdate,'dd') from dual
+Select to_char(sysdate,'mm') from dual
+Select to_char(sysdate,'mon') from dual
+Select to_char(sysdate,'month') from dual
+Select to_char(sysdate,'hh') from dual
+Select to_char(sysdate,'mi') from dual
+Select to_char(sysdate,'ss') from dual
+Select to_char(sysdate,'ddspth') from dual
+Select to_char(sysdate,'ddth') from dual
+/---------------------------------------------------------------------------\
+*DATE FUNCTION*
+select add_months(sysdate,4) from dual
+Select employee_id,first_name,round(months_between(sysdate,hire_date)/12,0) from hr.employees where round(months_between(sysdate,hire_date)/12,0)>28
+Select employee_id,first_name,round(months_between(sysdate,hire_date)/12) as "age" from hr.employees where round(months_between(sysdate,hire_date)/12,0)>28
+Select employee_id,first_name,last_name,hire_date,salary from hr.employees where to_char(hire_date,'yyyy')=1998
+select * from hr.employees where to_char(hire_date,'d')=6
+select * from hr.employees where to_char(hire_date,'mm')=12
+select * from hr.employees where to_char(hire_date,'dd')=24 or to_char(hire_date,'mm')=1
+/-----------------------------------------------------------------------------------------------------------------------------------------------------------\
+
+/-----------------------------------------------------------------*RANKING FUNCTOIN*------------------------------------------------------------------------------------------\
+Select employee_id,salary,row_number()over(order by salary desc) from hr.employees
+Select employee_id,salary,rank()over(order by salary desc) from hr.employees
+Select employee_id,salary,dense_rank()over(order by salary desc) from hr.employees
+Select employee_id,salary,ntile(10)over(order by salary desc) from hr.employees
+Select employee_id,salary,ntile(10)over(order by salary asc) from hr.employees
+Select employee_id,salary,row_number()over(order by salary desc)as "Row_number",rank()over(order by salary desc) as "Rank",dense_rank()over(order by salary desc)as "Dense_rank",ntile(10)over(order by salary desc) as "ntile"  from hr.employees
+
+/-----------------------------------------------------------------------------------------------------------------------------------------------------------\
+
+
+
+
+

@@ -1,0 +1,28 @@
+/==================================*TYPE OF JOIN*===========================================\
+Select * from hr.employees
+Select * from hr.departments
+Select * from hr.locations
+Select employee_id,first_name,last_name,salary,d.department_id,department_name from hr.employees e inner join hr.departments d on e.department_id=d.department_id
+select employee_id,first_name,department_name from hr.employees e inner join hr.departments d on e.department_id=d.department_id
+select employee_id,first_name,last_name,salary,department_name from hr.employees e left outer join hr.departments d on e.department_id=d.department_id
+select employee_id,first_name,last_name,salary,department_name from hr.employees e right outer join hr.departments d on e.department_id=d.department_id
+select employee_id,first_name,last_name,salary,department_name from hr.employees emp full outer join hr.departments dept on emp.department_id=dept.department_id
+select e1.employee_id,e1.job_id,e2.manager_id,e2.job_id from  hr.employees e1 join hr.employees e2 on e1.employee_id=e2.manager_id
+select employee_id,first_name,department_name from hr.employees cross join hr.departments
+/==================================*Nested Query*===========================================\
+select employee_id,first_name,last_name,salary from hr.employees where salary>(select salary from hr.employees where employee_id=110)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

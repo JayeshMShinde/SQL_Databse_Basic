@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+--DCL--
+--GRANT, REOKE--
+--USER CREATING--
+create user Admin_jay identified by pass123
+--GRANT
+grant connect,resource to Admin_jay
+--------------------------------------------------------------------------------
+grant select on hr.employees to Admin_jay
+--REVOKE--
+revoke select on hr.employees from Admin_jay
+--------------------------------------------------------------------------------
+--TO GET ACCESS OF SUB USER TABLE--
+select * from Admin_jay.employee_tbl_1
+--------------------------------------------------------------------------------
+create user Admin_2 identified by pass1223
+grant connect, resource to Admin_2
+grant select on hr.departments to Admin_2
+revoke select on hr.departments from Admin_2
+--------------------------------------------------------------------------------
+

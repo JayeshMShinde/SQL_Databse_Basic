@@ -1,0 +1,32 @@
+Select * from hr.employees
+/--------------------------------------------------------------------------\
+*Grouping Function*
+Select department_id,count(employee_id) from hr.employees group by department_id
+Select department_id,Max(employee_id) from hr.employees group by department_id
+Select department_id,min(employee_id) from hr.employees group by department_id
+Select department_id,avg(employee_id) from hr.employees group by department_id
+/--------------------------------------------------------------------------\
+Select department_id,max(salary) from hr.employees group by department_id
+Select department_id,min(salary) from hr.employees group by department_id
+Select department_id,avg(salary) from hr.employees group by department_id
+Select department_id,sum(salary) from hr.employees group by department_id
+/--------------------------------------------------------------------------\
+Select job_id,max(salary) from hr.employees group by job_id
+Select job_id,min(salary) from hr.employees group by job_id
+Select job_id,avg(salary) from hr.employees group by job_id
+Select job_id,count(salary) from hr.employees group by job_id
+Select job_id,sum(salary) from hr.employees group by job_id
+/--------------------------------------------------------------------------\
+Select to_char(hire_date,'yyyy'),count(employee_id) from hr.employees group by to_char(hire_date,'yyyy')
+/--------------------------------------------------------------------------\
+select department_id,max(salary) from hr.employees group by department_id having max(salary)>10000
+Select to_char(hire_date,'yyyy'),count(employee_id) from hr.employees group by to_char(hire_date,'yyyy') having to_char(hire_date,'yyyy') = 1998
+select job_id,count(employee_id) from hr.employees group by job_id having count(employee_id)<4
+Select department_id,max(salary) from hr.employees group by department_id,to_char(hire_date,'yyyy') having to_char(hire_date,'yyyy') = 1998
+/--------------------------------------------------------------------------\
+Select job_id,manager_id,count(employee_id) from hr.employees group by grouping sets ((job_id),(manager_id),(job_id,manager_id))
+Select job_id,to_char(hire_date,'yyyy') as "Year",max(salary) from hr.employees group by grouping sets ((job_id),(to_char(hire_date,'yyyy')),(job_id,to_char(hire_date,'yyyy')))
+
+
+
+

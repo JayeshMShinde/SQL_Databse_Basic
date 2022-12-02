@@ -1,0 +1,155 @@
+--STORED PROCEDURE--
+set serveroutput on
+Create or replace procedure sp_demo
+as
+begin
+dbms_output.put_line('Welcome to pune');
+end;
+--------------------------------------------------------------------------------
+--FOR SEEING OUTPUT--
+exec sp_demo
+--------------------------------------------------------------------------------
+create or replace procedure spadd(a number,b number)
+as
+c number;
+begin
+c:=a+b;
+dbms_output.put_line('Addition ='||c);
+end;
+--------------------------------------------------------------------------------
+exec spadd(20,30)
+--------------------------------------------------------------------------------
+create or replace procedure sperc(s1 number,s2 number,s3 number)
+as
+tot number;
+per number;
+begin
+tot:=(s1+s2+s3);
+dbms_output.put_line('TOTAL IS : '||tot);
+per:= tot/3;
+dbms_output.put_line('PERCENTAGE IS :'||per);
+  if(per>35) then
+  begin
+    dbms_output.put_line('PASS');
+  end;
+  else
+  begin
+    dbms_output.put_line('FAIL');
+  end;
+  end if;
+end;
+--------------------------------------------------------------------------------
+exec sperc(65,58,78)
+--------------------------------------------------------------------------------
+create table emps_12 
+(
+eid number,
+ename varchar(100),
+desgn varchar(100)
+)
+--------------------------------------------------------------------------------
+create or replace procedure spinsert(i number,n varchar,d varchar)
+as
+begin
+insert into emps_12 values(i,n,d);
+end;
+--------------------------------------------------------------------------------
+exec spinsert(1,'Ajay','HR')
+exec spinsert(2,'Jay','Bussiness Analyst')
+--------------------------------------------------------------------------------
+select * from emps_12
+--------------------------------------------------------------------------------
+create or replace procedure sp_update(i number,n varchar,d varchar)
+as
+begin
+update emps_12 set ename=n where eid=i;
+end;
+--------------------------------------------------------------------------------
+exec sp_update(1,'Rajesh','HR')
+--------------------------------------------------------------------------------
+create or replace procedure sp_delete(i number,n  varchar,d varchar)
+as
+begin
+delete from emps_12 where eid = i;
+end;
+--------------------------------------------------------------------------------
+exec sp_delete(2,'','')
+--------------------------------------------------------------------------------
+create or replace procedure spdml(type varchar,i number,n varchar,d varchar)
+as
+begin
+  if(type = 'Insert')then
+  insert into emps_12 values(i,n,d);
+  end if;
+  if(type = 'Update')then
+  update emps_12 set ename=n,desgn=d where eid = i;
+  end if;
+  if(type = 'Delete')then
+  delete emps_12 where eid=i;
+  end if;
+end;
+--------------------------------------------------------------------------------
+exec spdml('Insert',3,'Ajay','HR')
+exec spdml('Insert',4,'jay','Analyst')
+
+exec spdml('Update',2,'Rajesh','HR')
+
+exec spdml('Delete',2,'','')
+--------------------------------------------------------------------------------
+select * from emps_12;
+--------------------------------------------------------------------------------
+--Function--
+create or replace function fundemo
+return varchar
+as
+begin
+return 'Welcome to pune';
+end;
+--------------------------------------------------------------------------------
+--to run function we will use select command--
+select fundemo from dual
+--------------------------------------------------------------------------------
+create or replace function fun_stud(a number,b number,c number)
+return varchar
+as
+tot number;
+per number;
+begin
+tot:=a+b+c;
+per:=tot/3;
+if(per>35)then
+  return 'total:'||tot||' '||'Percentage:'||per||' '||'PASS';
+else
+    return 'total:'||tot||' '||'Percentage:'||per||' '||'FAIL';
+end if;
+end;
+--------------------------------------------------------------------------------
+select fun_stud(55,66,77) from dual
+--------------------------------------------------------------------------------
+create or replace function fun_count
+return varchar
+as
+tot number;
+begin
+select count(employee_id) into tot from hr.employees;
+return 'Count:'||tot;
+end;
+--------------------------------------------------------------------------------
+select fun_count from dual;
+--------------------------------------------------------------------------------
+create or replace function fun_Add(a in number,b in number,c out number)
+return varchar
+as
+begin
+c:=a+b;
+return 'Addition is : '||c;
+end;
+--------------------------------------------------------------------------------
+declare 
+x varchar(100);
+c number;
+begin
+x:=fun_Add(20,30,c);
+dbms_output.put_line(x);
+end;
+--------------------------------------------------------------------------------
